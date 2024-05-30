@@ -41,7 +41,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("book-store")).render(
   <React.StrictMode>
-    <Register/>
-    {/* <RouterProvider router={router} /> */}
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

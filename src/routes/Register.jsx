@@ -1,67 +1,65 @@
 import React, { useState } from "react";
-//hooks
 import UseHookValidation from "../hooks/useHookValidation";
 
 const Register = () => {
-  const { errorIndex, handleForm, dataForm, error } = UseHookValidation();
+  const { handleSubmit, onSubmit, errors, register } = UseHookValidation();
 
+  console.log(Object.values(errors).pop());
   return (
     <section className="section-register">
       <div className="section-register-group">
         <h1>Crie sua conta</h1>
 
-        <form className="section-register-form">
+        <form
+          onSubmit={onSubmit(handleSubmit)}
+          className="section-register-form"
+        >
           <label htmlFor="name">
             <input
-              placeholder="Seu nome"
+              placeholder={errors.name ? errors.name?.message : "Seu nome"}
               type="text"
-              name="name"
               id="name"
-              onBlur={handleForm}
+              style={errors.name ? { borderBottom: "1px solid red" } : {}}
+              {...register("name")}
             />
           </label>
           <label htmlFor="surname">
             <input
               placeholder="Seu sobrenome"
               type="text"
-              name="surname"
               id="surname"
-              onBlur={handleForm}
+              style={errors.surname ? { borderBottom: "1px solid red" } : {}}
+              {...register("surname")}
             />
           </label>
           <label htmlFor="email">
             <input
               placeholder="Seu email"
               type="text"
-              name="email"
               id="email"
-              onBlur={handleForm}
+              style={errors.email ? { borderBottom: "1px solid red" } : {}}
+              {...register("email")}
             />
           </label>
           <label htmlFor="password">
             <input
               placeholder="sua senha"
               type="text"
-              name="password"
               id="password"
-              onChange={handleForm}
-              value={dataForm?.password || ""}
+              style={errors.password ? { borderBottom: "1px solid red" } : {}}
+              {...register("password")}
             />
           </label>
           <label htmlFor="confirmpassword">
             <input
               placeholder="Confirme sua senha"
               type="text"
-              name="confirmpassword"
               id="confirmpassword"
-              onChange={handleForm}
-              value={dataForm?.confirmpassword || ""}
+              {...register("confirmpassword")}
             />
           </label>
-
-          <button type="submit" disabled={error}>
-            Criar conta
-          </button>
+          {errors ? <p id="messageError">{Object.values(errors)[0]?.message}</p> : ""}
+          <button type="submit">Criar conta</button>
         </form>
       </div>{" "}
       {/* section-register-group */}
