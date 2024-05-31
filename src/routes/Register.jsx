@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import UseHookValidation from "../hooks/useHookValidation";
 
 const Register = () => {
-  const { handleSubmit, onSubmit, errors, register } = UseHookValidation();
+  const { handleSubmit, onSubmit, errors, register, loading } =
+    UseHookValidation();
 
-  console.log(Object.values(errors).pop());
   return (
     <section className="section-register">
       <div className="section-register-group">
@@ -13,6 +13,7 @@ const Register = () => {
         <form
           onSubmit={onSubmit(handleSubmit)}
           className="section-register-form"
+          method="post"
         >
           <label htmlFor="name">
             <input
@@ -58,7 +59,12 @@ const Register = () => {
               {...register("confirmpassword")}
             />
           </label>
-          {errors ? <p id="messageError">{Object.values(errors)[0]?.message}</p> : ""}
+          {loading ? <p>Carregando</p> : ""}
+          {errors ? (
+            <p id="messageError">{Object.values(errors)[0]?.message}</p>
+          ) : (
+            ""
+          )}
           <button type="submit">Criar conta</button>
         </form>
       </div>{" "}

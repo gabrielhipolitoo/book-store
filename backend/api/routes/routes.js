@@ -4,6 +4,7 @@ const router = express.Router()
 //register account
 router.post('/registeruser',(req,res) => {
     res.json(req.body)
+    console.log(req.body)
 })
 
 

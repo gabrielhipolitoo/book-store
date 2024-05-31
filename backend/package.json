@@ -15,5 +15,8 @@
     "expressjs": "^1.0.1",
     "mysql": "^2.18.1",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5"
   }
 }
